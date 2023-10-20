@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/delivery")
 public class deliveryManage {
     @Autowired
-    com.example.bottledwater.service.deliveryInterface deliveryInterface;
+    private deliveryInterface deliveryInterface;
     @PostMapping("/insert")
     @CrossOrigin
     public APIResponse<String> insert(@RequestBody delivery delivery){

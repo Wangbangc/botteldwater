@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface deliveryInterface {
     boolean insert(delivery record);
    boolean deleteByPrimaryKey(Integer id);

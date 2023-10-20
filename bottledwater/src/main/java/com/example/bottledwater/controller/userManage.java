@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/userManage")
 public class userManage {
     @Autowired
-    com.example.bottledwater.service.userInterface userInterface;
+    private userInterface userInterface;
 @Autowired
 com.example.bottledwater.service.adminInterface adminInterface;
 

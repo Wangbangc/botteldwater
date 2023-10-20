@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface userInterface {
     boolean insert(userwater record);
     boolean selectusername(userwater userwater);

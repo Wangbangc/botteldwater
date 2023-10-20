@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class deliveryImpl implements deliveryInterface {
     @Autowired
-    com.example.bottledwater.mapper.deliveryMapper deliveryMapper;
+    private deliveryMapper deliveryMapper;
 
     @Override
     public boolean insert(delivery record) {

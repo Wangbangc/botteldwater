@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class adminImpl implements adminInterface {
 
     @Autowired
-    com.example.bottledwater.mapper.adminMapper adminMapper;
+    private adminMapper adminMapper;
 
     @Override
     public boolean token(String username) {

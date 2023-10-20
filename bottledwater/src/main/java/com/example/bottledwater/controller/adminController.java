@@ -1,6 +1,7 @@
 package com.example.bottledwater.controller;
 
 import com.example.bottledwater.entity.admin;
+import com.example.bottledwater.service.adminInterface;
 import com.example.bottledwater.utils.APIResponse;
 import com.example.bottledwater.utils.utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.*;
 @RequestMapping("/admin")
 public class adminController {
     @Autowired
-    com.example.bottledwater.service.adminInterface adminInterface;
+    private adminInterface adminInterface;
     @PostMapping("/login")
     @CrossOrigin
     public APIResponse<Object> Login(@RequestBody admin admin){

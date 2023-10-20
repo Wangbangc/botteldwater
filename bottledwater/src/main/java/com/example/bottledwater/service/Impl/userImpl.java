@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class userImpl implements userInterface {
     @Autowired
-    com.example.bottledwater.mapper.userwaterMapper userwaterMapper;
+    private userwaterMapper userwaterMapper;
     @Override
     public boolean insert(userwater record) {
         if (userwaterMapper.insert(record)!=null){
