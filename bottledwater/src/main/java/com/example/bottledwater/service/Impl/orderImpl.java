@@ -9,6 +9,8 @@ import com.example.bottledwater.mapper.orderMapper;
 import com.example.bottledwater.service.orderInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 import java.util.Random;
@@ -70,13 +72,32 @@ public class orderImpl implements orderInterface {
         return orderMapper.selectAll();
     }
 
-    @Override
-    public boolean updateByPrimaryKey(order record) {
-        // 根据主键更新订单信息并返回是否成功
-        if (orderMapper.updateByPrimaryKey(record) > 0) {
-            return true;
+    @Transactional
+    public boolean updateByPrimaryKey(OrderDTO orderDTO) {
+
+        // 更新主订单表
+        order mainOrder = new order();
+        mainOrder.setUserId(orderDTO.getUserId());
+        mainOrder.setTotalPrice(orderDTO.getTotalPrice());
+        mainOrder.setSerialNumber(orderDTO.getSerialNumber());
+        if (orderMapper.updateByPrimaryKey(mainOrder) < 0) {
+            return false;
         }
-        return false;
+        // 更新子订单表
+        for (OrderDetailDTO detailDTO : orderDTO.getOrderDetails()) {
+            orderDetail newDetail = new orderDetail();
+            newDetail.setOrderId(orderDTO.getSerialNumber());  // 使用主订单的ID
+            newDetail.setBottledWaterCategory(detailDTO.getBottledWaterCategory());
+            newDetail.setQuantity(detailDTO.getQuantity());
+            newDetail.setUnitPrice(detailDTO.getUnitPrice());
+
+            if (orderDetailMapper.updateByPrimaryKey(newDetail) <= 0) {
+                // 这里应该进行适当的错误处理，比如回滚事务
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return false;
+            }
+        }
+        return true;
     }
 
 

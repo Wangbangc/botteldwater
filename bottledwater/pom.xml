@@ -70,7 +70,15 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-
+            <!-- ...其他依赖... -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+            </dependency>
     </dependencies>
 
     <build>

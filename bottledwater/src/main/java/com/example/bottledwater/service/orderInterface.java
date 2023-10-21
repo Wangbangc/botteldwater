@@ -19,7 +19,7 @@ public interface orderInterface {
     List<order> selectAll();
 
     // 根据主键更新订单信息
-    boolean updateByPrimaryKey(order record);
+    boolean updateByPrimaryKey(OrderDTO orderDTO);
 
 
 
