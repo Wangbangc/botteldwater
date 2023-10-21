@@ -2,7 +2,21 @@ package com.example.bottledwater.mapper;
 
 import com.example.bottledwater.entity.admin;
 import org.apache.ibatis.annotations.Mapper;
-
+/**
+ * 创建日期:2023/10/23
+ * 编写人:wangbangc
+ * 功能描述:管理管理员信息
+ * 版本:1.0
+ * 方法列表:
+ * 1.登录：login
+ * 2.注册：register
+ * 3.更新管理员信息：updateAdmin
+ * 4.根据id查询管理员信息：selectByPrimaryKey
+ * 5.根据用户名查询管理员信息：loginname
+ * 6.根据用户名查询token：token
+ * 7.根据用户名查询管理员信息：login
+ * 8.根据id删除管理员信息：deleteByPrimaryKey
+ * **/
 @Mapper
 public interface adminMapper {
     admin login(admin rec);

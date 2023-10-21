@@ -6,6 +6,15 @@ public class OrderDTO {
     private int userId;
     private BigDecimal totalPrice;
     private List<OrderDetailDTO> orderDetails;
+    private String serialNumber;
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
 
     public int getUserId() {
         return userId;
@@ -30,4 +39,6 @@ public class OrderDTO {
     public void setOrderDetails(List<OrderDetailDTO> orderDetails) {
         this.orderDetails = orderDetails;
     }
+
+
 }

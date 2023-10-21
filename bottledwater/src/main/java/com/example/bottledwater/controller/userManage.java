@@ -11,7 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
-
+/**
+ * 创建时间：2023/10/23
+ * 编写人：wangbangc
+ * 功能描述：管理用户信息
+ * 版本：1.0
+ * 方法列表：
+ * 1.获取所有用户信息：select
+ * 2.添加用户信息：Insert
+ * 3.更新用户信息：Update
+ * 4.删除用户信息：Del
+ * 5.根据用户名模糊查询用户信息：selUser
+ *
+ * **/
 @RestController
 @RequestMapping("/userManage")
 public class userManage {

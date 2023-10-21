@@ -11,6 +11,7 @@ public interface orderMapper {
 
   List<order> selectAll();//查询订单
     int updateByPrimaryKey(order record);//修改订单信息
-
+//修改订单状态
+    int updateByPrimaryKey1(order record);
     List<order> selectuserid(int id);//用户id查询
 }

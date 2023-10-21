@@ -9,7 +9,17 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-
+/**
+ * 创建日期：2023/10/23
+ * 编写人：wangbangc
+ * 功能描述：管理管理员信息
+ * 版本：1.0
+ * 方法列表：
+ * 1.管理员登入：Login
+ * 2.管理员注册：Register
+ * 3.管理员更新：Update
+ *
+ * **/
 @RestController
 @RequestMapping("/admin")
 public class adminController {

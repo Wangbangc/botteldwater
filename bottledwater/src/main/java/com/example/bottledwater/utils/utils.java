@@ -5,7 +5,16 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.Date;
 import java.util.Date;
-
+/**
+ * 创建时间：2023/10/23
+ * 编写人：wangbangc
+ * 功能描述：生成管理员token
+ * 版本：1.0
+ * 方法列表：
+ * 1.生成token：generateToken
+ * 2.获取token中的用户名：getUsernameFromToken
+ * 3.判断token是否有效：isTokenValid
+ * **/
 public class utils {
     private static final long EXPIRATION_TIME = 864_000_000; // 10 days
     private static final String SECRET_KEY = "secretKey";

@@ -37,7 +37,7 @@
   <select id="selectLike" resultType="com.example.bottledwater.entity.order">
     select * from order_master where order_id;
   </select>
-  <select id="selectuserid" resultType="com.example.bottledwater.entity.order">
+  <select id="selectuserid" resultMap="BaseResultMap">
     select * from order_master where user_id=#{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -137,11 +137,15 @@
     -->
     update order_master
     set
-      total_price = #{totalPrice},
-      order_status = #{orderStatus},
-      created_at = #{createdAt},
-      updated_at = #{updatedAt},
-    serial_number=#{serialNumber}
+
+      order_status = #{orderStatus}
     where order_id = #{orderId}
   </update>
+    <update id="updateByPrimaryKey1">
+      update order_master
+      set
+
+        order_status = #{orderStatus}
+      where order_id = #{orderId}
+    </update>
 </mapper>

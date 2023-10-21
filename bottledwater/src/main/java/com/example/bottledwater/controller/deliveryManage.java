@@ -8,7 +8,19 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ * 创建时间：2023/10/23
+ * 编写人：wangbangc
+ * 功能描述：管理配送员信息
+ * 版本：1.0
+ * 方法列表：
+ * 1.创建配送员信息：insert
+ * 2.删除配送员信息：del
+ * 3.更新配送员信息：update
+ * 4.获取所有配送员信息：selectAll
+ * 5.根据用户名模糊查询配送员信息：selectLike
+ *
+ * **/
 @RestController
 @RequestMapping("/delivery")
 public class deliveryManage {
