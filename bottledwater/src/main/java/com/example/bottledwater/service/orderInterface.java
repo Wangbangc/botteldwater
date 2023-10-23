@@ -11,7 +11,7 @@ public interface orderInterface {
 
     // 插入新的订单记录
     boolean insert(OrderDTO orderDTO);
-    boolean updateByPrimaryKey1(order record);//修改订单状态
+
     // 根据主键删除订单
     boolean deleteByPrimaryKey(Integer orderId);
 

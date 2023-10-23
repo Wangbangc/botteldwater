@@ -55,13 +55,6 @@ public class orderImpl implements orderInterface {
         }
         return true;
     }
-//修改订单状态
-    @Override
-    public boolean  updateByPrimaryKey1(order record) {
-        if (orderMapper.updateByPrimaryKey1(record) > 0) {
-            return true;
-        }return false;
-    }
 
 
     @Override

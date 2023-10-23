@@ -26,7 +26,7 @@ import java.util.Random;
  * 6.根据用户名获取订单：getOrdersByUserId
  * 7.添加到购物车：addToCart
  * 8.从购物车中移除商品：removeFromCart（未完成）
- * 9.订单状态修改：updateOrderStatus
+ * 9.订单状态修改：updateOrderStatus（未完成）
  * 10.清空用户的购物车：clearCart（未完成）
  * 12.获取购物车中的商品总价：getCartTotalPrice（未完成）
  *
@@ -130,17 +130,23 @@ public class OrderController {
         }
     }
 
-    //修改订单状态
-    @PutMapping("/updateOrderStatus")
-    public APIResponse<String> updateOrderStatus(@RequestBody order updatedOrder) {
-        try {
-            if (orderService.updateByPrimaryKey1(updatedOrder)) {
-                return APIResponse.successResponse1();
-            } else {
-                return APIResponse.errorResponse(2, "更新订单状态异常");
-            }
-        } catch (Exception e) {
-            return APIResponse.errorResponse(1, e.getMessage());
-        }
+
+//    用户方法编写
+@PostMapping("/addToCart")
+@CrossOrigin
+public APIResponse<String> addToCart(@RequestBody OrderDetailDTO orderDetailDTO, @RequestHeader("Authorization") String authorizationHeader) {
+    try {
+      int userId=4;
+
+        // 创建 ShoppingCartManager 的实例
+        ShoppingCartManager cartManager = new ShoppingCartManager();
+
+        // 调用购物车管理类的添加到购物车方法
+        cartManager.addToCart(userId, orderDetailDTO);
+
+        return APIResponse.successResponse1();
+    } catch (Exception e) {
+        return APIResponse.errorResponse(1, e.getMessage());
     }
+}
 }
