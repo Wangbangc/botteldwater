@@ -20,7 +20,9 @@ import java.util.*;
  * 3.管理员更新：Update
  *
  * **/
+
 @RestController
+
 @RequestMapping("/admin")
 public class adminController {
     @Autowired
@@ -69,12 +71,30 @@ return APIResponse.errorResponse(1,e.getMessage());
 
 }
 
+@GetMapping("/selectUsername")
+@CrossOrigin(origins = "http://localhost:8080")
+    public APIResponse<Object> selectUsername(@RequestHeader("Authorization") String token){
+        Map<String,String> res=new HashMap<>();
+        try {
+            admin admin=adminInterface.selectUsernameAdmin(utils.getUsernameFromToken(token));
+            res.put("username",admin.getUsername());
+           res.put("password",admin.getPassword());
+              res.put("phone",admin.getPhone());
+                res.put("email",admin.getEmail());
+            return APIResponse.successResponse(res);
+        }catch (Exception e){
+            return APIResponse.errorResponse(1,e.getMessage());
+        }
+}
 @PostMapping("/update")
 @CrossOrigin
     public APIResponse<Object> Update(@RequestHeader("Authorization") String token, @RequestBody admin admin){
 
    Map<String,String> a=new HashMap<>();
         try {
+            if (adminInterface.loginname(admin)){
+                return APIResponse.errorResponse(2,"用户名已存在");
+            }
             if ( adminInterface.updateAdmin(admin,utils.getUsernameFromToken(token))){
                 a.put("token", utils.generateToken(admin.getUsername()));
                 return APIResponse.successResponse(a);

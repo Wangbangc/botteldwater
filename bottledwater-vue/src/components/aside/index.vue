@@ -103,7 +103,8 @@ ticketSearch(){
   this.$router.push('/home')
 },
     userInfo(){
-      this.$router.push('/')
+      // 跳转用户信息管理
+      this.$router.push('/userManage')
     },
     Passenger(){
       this.$router.push('/')

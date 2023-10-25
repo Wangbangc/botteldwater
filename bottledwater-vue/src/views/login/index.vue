@@ -153,11 +153,13 @@ function loginone(formEl: FormInstance | undefined) {
           })}
         }
         else  {
+    
           location.href = '/home';
         }
       }).catch((err)=>{
 
         console.log(err)
+        ElMessage.error('登录失败'+err)
       })
 }
 function registerone(formEl: FormInstance | undefined) {
@@ -175,7 +177,9 @@ function registerone(formEl: FormInstance | undefined) {
         })}
     }
     else{
+     
 location.href='home';
+
     }
   }).catch((err)=>
   console.log(err))

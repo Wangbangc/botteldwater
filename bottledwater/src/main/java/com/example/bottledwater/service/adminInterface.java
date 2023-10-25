@@ -10,4 +10,6 @@ public interface adminInterface {
     boolean loginname(admin rec);
     boolean register(admin rec);
     boolean updateAdmin(admin rec,String username);
+    admin selectUsernameAdmin(String username);
+
 }

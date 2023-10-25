@@ -50,4 +50,9 @@ public class adminImpl implements adminInterface {
         return false;
     }
 
+    @Override
+    public admin selectUsernameAdmin(String username) {
+        return adminMapper.selectUsernameAdmin(username);
+    }
+
 }

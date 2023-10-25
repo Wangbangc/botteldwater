@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
+import java.util.Enumeration;
+
 @Slf4j
 @Component
 public class AntPathMatcher implements Filter {
@@ -15,12 +17,19 @@ public class AntPathMatcher implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            filterChain.doFilter(request, response);
+            return;
+        }
         String requestURI = request.getRequestURI();
         String[] urls=new String[]{
                 "/admin/login",
-                "/admin/register"
+                "/admin/register",
         };
         boolean check = check(urls, requestURI);
         if (check) {

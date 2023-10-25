@@ -4,6 +4,8 @@ import HomeView from '../views/HomeView.vue'
 // @ts-ignore
 import Login from '../views/login/index.vue'
 import Home from '../views/home/index.vue'
+import Admin from '../views/admin/index.vue'
+import UserManage from '../views/userManage/index.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -14,6 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     path:'/home',
     name:'home',
     component:Home
+  },
+  {
+    path:'/userManage',
+    name:'userManage',
+    component:UserManage
+  },
+  {
+    path:'/admin',
+    name:'admin',
+    component:Admin
   },
   {
     path:'/adminLogin',

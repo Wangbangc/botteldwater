@@ -14,7 +14,7 @@
                 key="plain"
                 type=""
                 link
-                @click="TicketSearch"
+                @click="home"
             ><li>首页</li></el-button>
             </el-col>
             <el-col :span="6"><el-link href="https://github.com/Wangbangc/12306hsd" target="_blank"><li>github地址</li></el-link>
@@ -22,9 +22,9 @@
             <el-col :span="6"> <el-button
                 type=""
                 link
-                @click="Team"
+                @click="admin"
 
-            ><li>团队信息</li></el-button>
+            ><li>管理员信息处理</li></el-button>
             </el-col>
             <el-col :span="6"> <div class="about-content">
             </div>
@@ -35,23 +35,29 @@
     </el-header>
   </div>
 </template>
-<script>
-export default {
-  data(){
-    return{
+<script lang="ts">
 
-    }
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
+export default defineComponent({
+  name: 'Header',
+  setup() {
+    const router = useRouter();
+    const admin = () => {
+      router.push('/admin');
+    };
+    const home = () => {
+      router.push('/home');
+    };
+    return {
+      admin,
+      home,
+    };
   },
-  methods:{
-    TicketSearch(){
-      this.$router.push('/home')
-    },
-    Team(){
-      this.$router.push('/')
-    }
-  }
-}
+});
 </script>
+
+
 <style>
 .about-content{
   margin-left: 60px;

@@ -19,7 +19,7 @@
 }
 </style>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent} from 'vue';
 
 import Aside from '@/components/aside/index.vue';
 import Header from '@/components/header/index.vue';
