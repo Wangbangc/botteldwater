@@ -10,8 +10,15 @@ import java.util.List;
 
 @Service
 public class userImpl implements userInterface {
+
     @Autowired
     private userwaterMapper userwaterMapper;
+
+    @Override
+    public userwater selectIdUserwater(int id) {
+        return userwaterMapper.selectIdUserwater(id);
+    }
+
     @Override
     public boolean insert(userwater record) {
         if (userwaterMapper.insert(record)!=null){

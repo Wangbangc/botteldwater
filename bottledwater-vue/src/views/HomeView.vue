@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+   <el-dialog class="dialog" title="Edit User">
+            sss
+            </el-dialog>
 </template>
+
 
 <script lang="ts">
 import { defineComponent } from 'vue';

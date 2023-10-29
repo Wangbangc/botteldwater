@@ -6,11 +6,19 @@ import Login from '../views/login/index.vue'
 import Home from '../views/home/index.vue'
 import Admin from '../views/admin/index.vue'
 import UserManage from '../views/userManage/index.vue'
+import bottledManage from '../views/bottledManage/index.vue'
+import deliveryManage from '../views/deliveryManage/index.vue'
+import orderManage from '../views/orderManage/index.vue'  
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: '',
-    component: HomeView
+    component: Login
+  },  
+  {
+    path:'/bottledManage',
+    name:'bottledManage',
+    component:bottledManage
   },
   {
     path:'/home',
@@ -27,11 +35,7 @@ const routes: Array<RouteRecordRaw> = [
     name:'admin',
     component:Admin
   },
-  {
-    path:'/adminLogin',
-    name:'adminLogin',
-    component:Login
-  },
+ 
   {
     path: '/about',
     name: 'about',

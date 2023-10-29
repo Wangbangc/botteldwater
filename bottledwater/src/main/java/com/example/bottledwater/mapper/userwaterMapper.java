@@ -13,6 +13,8 @@ public interface userwaterMapper {
     Integer selectPhone(userwater userwater);//查询数据库中电话是否存在
     Integer selectEmail(userwater userwater);//查询数据库中邮箱是否存在
 
+    userwater selectIdUserwater(int id);
+
     Integer updateuser(userwater userwater);
 
     Integer deluser(int id);

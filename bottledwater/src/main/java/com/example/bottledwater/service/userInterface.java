@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public interface userInterface {
+    userwater selectIdUserwater(int id);
     boolean insert(userwater record);
     boolean selectusername(userwater userwater);
     boolean selectPhone(userwater userwater);

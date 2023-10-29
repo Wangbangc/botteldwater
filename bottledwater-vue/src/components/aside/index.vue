@@ -19,8 +19,6 @@
               default-active="2"
               class="el-menu-vertical-demo"
               :collapse="isCollapse"
-              @open="handleOpen"
-              @close="handleClose"
           >
             <el-sub-menu index="1">
               <template #title>
@@ -32,7 +30,7 @@
                     key="plain"
                     type=""
                     link
-                  @click="ticketSearch"
+                  @click="bottledManage"
                 >车票查询</el-button></el-menu-item>
 
               </el-menu-item-group>
@@ -97,10 +95,10 @@ export default {
 
     },
     logout(){
-      this.$router.push('/adminlogin')
+      this.$router.push('/')
     },
-ticketSearch(){
-  this.$router.push('/home')
+bottledManage(){
+  this.$router.push('/bottledManage')
 },
     userInfo(){
       // 跳转用户信息管理

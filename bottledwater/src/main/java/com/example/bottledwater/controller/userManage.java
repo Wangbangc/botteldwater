@@ -78,6 +78,7 @@ public APIResponse<List<userwater>> select(@RequestHeader("Authorization" )Strin
     @PostMapping("/update")
     @CrossOrigin
     public APIResponse<String> Update(@RequestBody userwater userwater){
+
     try {
         if(userInterface.selectEmail(userwater))return APIResponse.errorResponse(3,"修改邮箱已存在");
         if(userInterface.selectusername(userwater))return APIResponse.errorResponse(3,"修改用户名已存在");
@@ -110,9 +111,10 @@ public APIResponse<List<userwater>> select(@RequestHeader("Authorization" )Strin
     }
     }
 
-    @GetMapping("selUser")
+    @GetMapping("/selUser")
     @CrossOrigin
     public APIResponse<List<userwater>> selUser(String sel){
+    System.out.println(sel);
     try {
         List<userwater> userwaters=userInterface.selectUser(sel);
        if(!ObjectUtils.isEmpty(userwaters)){
@@ -125,5 +127,20 @@ public APIResponse<List<userwater>> select(@RequestHeader("Authorization" )Strin
     }
     }
 
+    //根据id查询
+    @GetMapping("/selectIdUserwater")
+    @CrossOrigin
+    public APIResponse<userwater> selectIdUserwater(Integer id){
 
+    try {
+        userwater userwater=userInterface.selectIdUserwater(id);
+        if(!ObjectUtils.isEmpty(userwater)){
+            return APIResponse.successResponse(userwater);
+        }else {
+            return APIResponse.errorResponse(2,"查询不存在");
+        }
+    }catch (Exception e){
+        return APIResponse.errorResponse(1,e.getMessage());
+    }
+    }
 }
