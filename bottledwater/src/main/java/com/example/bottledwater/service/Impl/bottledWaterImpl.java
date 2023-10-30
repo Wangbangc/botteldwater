@@ -38,4 +38,9 @@ public class bottledWaterImpl implements bottledWaterInterface {
        if (bottledWaterMapper.updateByPrimaryKey(record)>0) return true;
        else return false;
     }
+
+    @Override
+    public List<bottledWater> selProduct(String sel) {
+        return bottledWaterMapper.selProduct(sel);
+    }
 }

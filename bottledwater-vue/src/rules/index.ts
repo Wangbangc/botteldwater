@@ -27,6 +27,7 @@ export interface bottleds{
   image: string;
   price: number;
   [property: string]: any;
+  imageData:File,
 }
 export interface bottled{ 
  imageData:File,

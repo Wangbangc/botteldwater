@@ -37,30 +37,37 @@ const bottleddelete = async (id) => {
 };
 //修改商品
 const bottledupdate = async (body) => {
-    
-    const a = await axios({
-        method: 'post',
-        url: '/bottledManage/update',
-        data: body
-    });
-    return a;
+    const formData = new FormData();
+    formData.append('id', body.id);
+    formData.append('imageData', body.imageData);
+    formData.append('brand', body.brand);
+    formData.append('categoryName', body.categoryName);
+    formData.append('price', body.price);
+    formData.append('description', body.description);
+    const response = await axios.put('/bottledWaterManage/updateProduct', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+    return  response ;
 };
+
 //模糊查询商品
 const bottledselect = async (name) => {
     const a = await axios({
         method: 'get',
-        url: '/bottledManage/selBottled?sel=' + name,
+        url: '/bottledWaterManage/selProduct?sel=' +name,
     });
     return a;
 };
 
 //查看商品详情
 const bottledselectId = async (id) => {
-    const a = await axios({
-        method: 'get',
-        url: '/bottledManage/selectIdBottled?id=' + id,
-    });
-    return a;
+    // const a = await axios({
+    //     method: 'get',
+    //     url: '/bottledManage/selectIdBottled?id=' + id,
+    // });
+    // return a;
 };
 export { bottledselectAll, bottledadd, bottleddelete, bottledupdate, bottledselect, bottledselectId
 };

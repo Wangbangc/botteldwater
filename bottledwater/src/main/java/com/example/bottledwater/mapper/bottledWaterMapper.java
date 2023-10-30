@@ -10,7 +10,7 @@ public interface bottledWaterMapper {
     int insert(bottledWater record);//插入商品
     List<bottledWater> selectAll();//商品展示
     int deleteByPrimaryKey(Integer id);//根据id删除商品
-
+    List<bottledWater> selProduct(String sel);//模糊查询商品
     //id查询
     bottledWater selectByPrimaryKey(Integer id);
 

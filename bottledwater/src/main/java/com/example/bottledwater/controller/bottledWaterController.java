@@ -27,6 +27,7 @@ import java.util.Map;
  * 2.获取所有商品信息：getAllProducts
  * 3.根据id查询商品信息：getProductById
  * 4.更新商品信息：updateProduct
+ * 5.模糊查询商品信息：selProduct
  * **/
 @RestController
 @RequestMapping("/bottledWaterManage")
@@ -149,6 +150,35 @@ public class bottledWaterController {
             return APIResponse.errorResponse(1, e.getMessage());
         }
     }
+//模糊查询商品信息
+    @GetMapping("/selProduct")
+    @CrossOrigin
+    public ResponseEntity<APIResponse<List<Map<String, Object>>>> selProduct(String sel) {
+        try {
+            List<bottledWater> products = bottledWaterService.selProduct(sel);
 
+            List<Map<String, Object>> responseList = new ArrayList<>();
+            for (bottledWater product : products) {
+                Map<String, Object> productMap = new HashMap<>();
+                productMap.put("id", product.getId());
+                productMap.put("brand", product.getBrand());
+                productMap.put("categoryName", product.getCategoryName());
+                productMap.put("price", product.getPrice());
+                productMap.put("description", product.getDescription());
+
+                // 加载图片并将其转换为Base64
+                byte[] imageBytes = ImageStorageUtil.loadImage(product.getImageUrl().substring(8)); // Assuming the URL is "/images/filename.jpg"
+
+                String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
+                productMap.put("image", imageBase64);
+
+                responseList.add(productMap);
+            }
+
+            return ResponseEntity.ok(APIResponse.successResponse(responseList));
+        } catch (Exception e) {
+            return ResponseEntity.ok(APIResponse.errorResponse(1, e.getMessage()));
+        }
+    }
 
 }
