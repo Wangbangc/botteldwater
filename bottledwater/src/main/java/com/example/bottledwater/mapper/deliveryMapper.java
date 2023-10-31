@@ -14,10 +14,10 @@ public interface deliveryMapper {
     Integer selectIdnumber(delivery delivery);
 
     Integer selectUsername(delivery delivery);
-
+    Integer selectPhone(delivery delivery);
     List<delivery> selectAll();
 
-    List<delivery> selectLike(String sel);
+    List<delivery> selectLike(String sel);//模糊查询
     Integer updateByPrimaryKey(delivery record);
 
     delivery selectByPrimaryKey(Integer id);

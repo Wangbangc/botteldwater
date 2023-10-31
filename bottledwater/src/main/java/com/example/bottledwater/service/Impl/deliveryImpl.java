@@ -31,7 +31,15 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean selectIdnumber(delivery delivery) {
-        if (deliveryMapper.selectIdnumber(delivery)!=null){
+        if (deliveryMapper.selectIdnumber(delivery)==null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean selectPhone(delivery delivery) {
+        if (deliveryMapper.selectPhone(delivery)==null){
             return true;
         }
         return false;
@@ -39,7 +47,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean selectUsername(delivery delivery) {
-        if (deliveryMapper.selectUsername(delivery)!=null){
+        if (deliveryMapper.selectUsername(delivery)==null){
             return true;
         }
         return false;
@@ -57,7 +65,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean updateByPrimaryKey(delivery record) {
-        if (deliveryMapper.updateByPrimaryKey(record)>0){
+        if (deliveryMapper.updateByPrimaryKey(record)!=0){
             return true;
         }
         return false;

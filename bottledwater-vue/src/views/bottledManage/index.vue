@@ -1,9 +1,3 @@
-
-import { Loading } from '@element-plus/icons-vue/dist/types';
-
-import { Loading } from 'element-plus/es/components/loading/src/service';
-
-import { Bottom } from '@element-plus/icons-vue/dist/types';
 <template>
     <div class="common-layout">
       <el-container class="ss">

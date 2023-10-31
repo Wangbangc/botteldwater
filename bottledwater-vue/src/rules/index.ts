@@ -29,6 +29,15 @@ export interface bottleds{
   [property: string]: any;
   imageData:File,
 }
+export interface deliverys{
+    id: number;
+    idNumber: null;
+    password: string;
+    phone: string;
+    realName: null;
+    username: string;
+    [property: string]: any;
+}
 export interface bottled{ 
  imageData:File,
 id: number,

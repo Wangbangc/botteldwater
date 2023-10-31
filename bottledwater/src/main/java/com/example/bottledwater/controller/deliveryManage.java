@@ -31,8 +31,9 @@ public class deliveryManage {
     public APIResponse<String> insert(@RequestBody delivery delivery){
         try {
             System.out.println(delivery.getIdNumber());
-            if (deliveryInterface.selectUsername(delivery)) return APIResponse.errorResponse(1,"用户名已存在");
-            if (deliveryInterface.selectIdnumber(delivery)) return APIResponse.errorResponse(1,"身份证号已被绑定");
+            if (!deliveryInterface.selectUsername(delivery)) return APIResponse.errorResponse(1,"用户名已存在");
+            if (!deliveryInterface.selectPhone(delivery)) return APIResponse.errorResponse(2,"电话已存在");
+            if (!deliveryInterface.selectIdnumber(delivery)) return APIResponse.errorResponse(4,"身份证号已被绑定");
             if (deliveryInterface.insert(delivery)) return APIResponse.successResponse1();
             else {
                 return APIResponse.errorResponse(2,"插入数据错误");
@@ -55,13 +56,17 @@ public class deliveryManage {
         }
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @CrossOrigin
     public APIResponse<String> update(@RequestBody delivery delivery){
         try {
-            if (deliveryInterface.selectUsername(delivery)) return APIResponse.errorResponse(1,"用户名重复");
-            if (deliveryInterface.selectIdnumber(delivery)) return APIResponse.errorResponse(2,"身份证号重复");
-            if (deliveryInterface.updateByPrimaryKey(delivery)) return APIResponse.successResponse1();
+            if (deliveryInterface.selectUsername(delivery)&&deliveryInterface.selectIdnumber(delivery)&&deliveryInterface.selectPhone(delivery)) {
+
+                if (deliveryInterface.updateByPrimaryKey(delivery)) {return APIResponse.successResponse1();}
+                else {
+                    return APIResponse.errorResponse(3,"信息重复或已被使用");
+                }
+            }
         }catch (Exception e){
             APIResponse.errorResponse(4, e.getMessage());
         }
@@ -86,6 +91,7 @@ public class deliveryManage {
    @GetMapping("/selectLike")
    @CrossOrigin
    public APIResponse<List<delivery>> selectLike(String like){
+        System.out.println(like);
         try {
             List<delivery> deliveries=deliveryInterface.selectLike(like);
             if (!ObjectUtils.isEmpty(deliveries)){

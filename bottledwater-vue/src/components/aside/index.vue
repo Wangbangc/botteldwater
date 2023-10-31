@@ -23,7 +23,7 @@
             <el-sub-menu index="1">
               <template #title>
 
-                <span> <el-icon><TakeawayBox /></el-icon>车票管理</span>
+                <span> <el-icon><TakeawayBox /></el-icon>商品管理</span>
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1"><el-button
@@ -31,8 +31,7 @@
                     type=""
                     link
                   @click="bottledManage"
-                >车票查询</el-button></el-menu-item>
-
+                >商品信息</el-button></el-menu-item>
               </el-menu-item-group>
             </el-sub-menu>
             <el-sub-menu index="2">
@@ -53,15 +52,29 @@
             <el-sub-menu index="3">
               <template #title>
 
-                <span><el-icon><Document /></el-icon>订单管理</span>
+                <span> <el-icon><TakeawayBox /></el-icon>商品管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="3-1"><el-button
+                <el-menu-item index="1-1"><el-button
                     key="plain"
                     type=""
                     link
-                    @click="Orderlist"
-                >车票订单</el-button></el-menu-item>
+                  @click="bottledManage"
+                >商品信息</el-button></el-menu-item>
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-sub-menu index="4">
+              <template #title>
+
+                <span> <el-icon><TakeawayBox /></el-icon>配送员管理</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="1-1"><el-button
+                    key="plain"
+                    type=""
+                    link
+                  @click="deliveryManage"
+                >配送员信息</el-button></el-menu-item>
               </el-menu-item-group>
             </el-sub-menu>
          </el-menu>
@@ -104,8 +117,9 @@ bottledManage(){
       // 跳转用户信息管理
       this.$router.push('/userManage')
     },
-    Passenger(){
-      this.$router.push('/')
+    deliveryManage(){
+      // 跳转配送员信息管理
+      this.$router.push('/deliveryManage')
     },
     Orderlist(){
       this.$router.push('/')

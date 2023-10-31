@@ -10,7 +10,7 @@ public interface deliveryInterface {
     boolean insert(delivery record);
    boolean deleteByPrimaryKey(Integer id);
     boolean selectIdnumber(delivery delivery);
-
+   boolean selectPhone(delivery delivery);
    boolean selectUsername(delivery delivery);
 
     List<delivery> selectAll();

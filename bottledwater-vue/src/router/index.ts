@@ -16,6 +16,16 @@ const routes: Array<RouteRecordRaw> = [
     component: Login
   },  
   {
+    path: '/deliveryManage',
+    name: 'deliveryManage',
+    component: deliveryManage
+  },
+  {
+    path: '/orderManage',
+    name: 'orderManage',
+    component: orderManage
+  },
+  {
     path:'/bottledManage',
     name:'bottledManage',
     component:bottledManage

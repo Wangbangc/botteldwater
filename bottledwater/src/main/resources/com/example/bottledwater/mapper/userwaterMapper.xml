@@ -34,13 +34,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectUsername" resultType="java.lang.Integer">
-    select * from user_water where username=#{username}
+    select * from user_water where username=#{username} and id!=#{id}
   </select>
   <select id="selectPhone" resultType="java.lang.Integer">
-    select * from user_water where phone=#{phone}
+    select * from user_water where phone=#{phone} and id!=#{id}
   </select>
   <select id="selectEmail" resultType="java.lang.Integer">
-    select * from user_water where email=#{email}
+    select * from user_water where email=#{email} and id!=#{id}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select * from user_water;
