@@ -1,17 +1,26 @@
 package com.example.bottledwater.controller;
-import com.example.bottledwater.Component.ShoppingCartManager;
-import com.example.bottledwater.DTO.OrderDTO;
-import com.example.bottledwater.DTO.OrderDetailDTO;
-import com.example.bottledwater.entity.order;
-import com.example.bottledwater.service.orderInterface;
-import com.example.bottledwater.service.userInterface;
+
+import com.example.bottledwater.component.ShoppingCartManager;
+import com.example.bottledwater.dto.OrderDTO;
+import com.example.bottledwater.dto.OrderDetailDTO;
+import com.example.bottledwater.entity.Order;
+import com.example.bottledwater.service.OrderInterface;
+import com.example.bottledwater.service.UserInterface;
 import com.example.bottledwater.utils.APIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Random;
+
 /**
  * 创建日期：2023/10/23
  * 编写人：wangbangc
@@ -29,33 +38,36 @@ import java.util.Random;
  * 9.订单状态修改：updateOrderStatus（未完成）
  * 10.清空用户的购物车：clearCart（未完成）
  * 12.获取购物车中的商品总价：getCartTotalPrice（未完成）
- *
- * **/
+ **/
 @RestController
 @RequestMapping("/orderManage")
 public class OrderController {
 
 
     @Autowired
-    private orderInterface orderService;
+    private OrderInterface orderService;
     @Autowired
-    private userInterface userInterface;
+    private UserInterface userInterface;
+
     /**
      * 获取所有订单
+     *
      * @return List of orders
      */
     @GetMapping("/getAllOrders")
     @CrossOrigin
-    public APIResponse<List<order>> getAllOrders() {
+    public APIResponse<List<Order>> getAllOrders() {
         try {
-            List<order> orders = orderService.selectAll();
+            List<Order> orders = orderService.selectAll();
             return APIResponse.successResponse(orders);
         } catch (Exception e) {
             return APIResponse.errorResponse(1, e.getMessage());
         }
     }
+
     /**
      * 创建新订单
+     *
      * @param
      * @return API Response
      */
@@ -77,6 +89,7 @@ public class OrderController {
 
     /**
      * 更新现有订单
+     *
      * @param updatedOrderDTO The order details to be updated
      * @return API Response
      */
@@ -96,6 +109,7 @@ public class OrderController {
 
     /**
      * 根据ID删除订单
+     *
      * @param id The id of the order to be deleted
      * @return API Response
      */
@@ -112,18 +126,20 @@ public class OrderController {
             return APIResponse.errorResponse(1, e.getMessage());
         }
     }
+
     /**
      * 根据用户名来获取获取订单
+     *
      * @param username The id of the user whose orders are to be fetched
      * @return List of orders
      */
     @GetMapping("/getOrdersByUserId/{username}")
     @CrossOrigin
-    public APIResponse<List<order>> getOrdersByUserId(@PathVariable String username) {
+    public APIResponse<List<Order>> getOrdersByUserId(@PathVariable String username) {
         try {
-          System.out.println(userInterface.selectUser(username).get(0));
-            Integer userId=userInterface.selectUser(username).get(0).getId();
-            List<order> orders = orderService.selectByUserId(userId);
+            System.out.println(userInterface.selectUser(username).get(0));
+            Integer userId = userInterface.selectUser(username).get(0).getId();
+            List<Order> orders = orderService.selectByUserId(userId);
             return APIResponse.successResponse(orders);
         } catch (Exception e) {
             return APIResponse.errorResponse(1, e.getMessage());
@@ -131,22 +147,22 @@ public class OrderController {
     }
 
 
-//    用户方法编写
-@PostMapping("/addToCart")
-@CrossOrigin
-public APIResponse<String> addToCart(@RequestBody OrderDetailDTO orderDetailDTO, @RequestHeader("Authorization") String authorizationHeader) {
-    try {
-      int userId=4;
+    //    用户方法编写
+    @PostMapping("/addToCart")
+    @CrossOrigin
+    public APIResponse<String> addToCart(@RequestBody OrderDetailDTO orderDetailDTO, @RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            int userId = 4;
 
-        // 创建 ShoppingCartManager 的实例
-        ShoppingCartManager cartManager = new ShoppingCartManager();
+            // 创建 ShoppingCartManager 的实例
+            ShoppingCartManager cartManager = new ShoppingCartManager();
 
-        // 调用购物车管理类的添加到购物车方法
-        cartManager.addToCart(userId, orderDetailDTO);
+            // 调用购物车管理类的添加到购物车方法
+            cartManager.addToCart(userId, orderDetailDTO);
 
-        return APIResponse.successResponse1();
-    } catch (Exception e) {
-        return APIResponse.errorResponse(1, e.getMessage());
+            return APIResponse.successResponse1();
+        } catch (Exception e) {
+            return APIResponse.errorResponse(1, e.getMessage());
+        }
     }
-}
 }
