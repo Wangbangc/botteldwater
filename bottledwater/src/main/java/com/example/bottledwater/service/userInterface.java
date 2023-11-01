@@ -1,7 +1,6 @@
 package com.example.bottledwater.service;
 
 import com.example.bottledwater.entity.userwater;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

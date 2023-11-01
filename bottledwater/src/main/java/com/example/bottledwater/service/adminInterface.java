@@ -1,7 +1,6 @@
 package com.example.bottledwater.service;
 
 import com.example.bottledwater.entity.admin;
-import org.springframework.stereotype.Service;
 
 
 public interface adminInterface {
