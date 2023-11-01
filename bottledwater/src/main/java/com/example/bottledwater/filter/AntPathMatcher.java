@@ -1,6 +1,6 @@
 package com.example.bottledwater.filter;
 
-import com.example.bottledwater.utils.utils;
+import com.example.bottledwater.utils.Utils;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -32,31 +32,26 @@ public class AntPathMatcher implements Filter {
             return;
         }
         String requestURI = request.getRequestURI();
-        String[] urls = new String[]{
-                "/admin/login",
-                "/admin/register",
-        };
+        String[] urls = new String[]{"/admin/login", "/admin/register"};
         boolean check = check(urls, requestURI);
         if (check) {
             filterChain.doFilter(request, response);
-            return;
         } else {
             String token = request.getHeader("Authorization");
-            if (utils.isTokenValid(token)) {
+            if (Utils.isTokenValid(token)) {
                 filterChain.doFilter(request, response);
                 return;
             } else {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
             }
-            return;
         }
+        return;
 
     }
 
     public boolean check(String[] urls, String requestURI) {
         for (String url : urls) {
-            boolean match = PATH_MATCHER.match(url, requestURI);
-            if (match) return true;
+            return PATH_MATCHER.match(url, requestURI);
         }
         return false;
     }

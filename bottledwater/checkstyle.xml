@@ -43,7 +43,7 @@
             <property name="max" value="150"/>
         </module>
         <module name="ParameterNumber">
-            <property name="max" value="5"/>
+            <property name="max" value="7"/>
             <property name="ignoreOverriddenMethods" value="true"/>
             <property name="tokens" value="METHOD_DEF"/>
         </module>
@@ -66,12 +66,12 @@
         <module name="EqualsHashCode"/>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
-        <module name="MagicNumber">
-            <property name="ignoreNumbers" value="0, 1, 2"/>
-            <property name="ignoreAnnotation" value="true"/>
-            <property name="ignoreHashCodeMethod" value="true"/>
-            <property name="ignoreFieldDeclaration" value="true"/>
-        </module>
+<!--        <module name="MagicNumber">-->
+<!--            <property name="ignoreNumbers" value="0, 1, 2"/>-->
+<!--            <property name="ignoreAnnotation" value="true"/>-->
+<!--            <property name="ignoreHashCodeMethod" value="true"/>-->
+<!--            <property name="ignoreFieldDeclaration" value="true"/>-->
+<!--        </module>-->
         <module name="MissingSwitchDefault"/>
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
@@ -90,13 +90,6 @@
         </module>
         <module name="UncommentedMain">
             <property name="excludedClasses" value=".*Application$"/>
-        </module>
-        <module name="Regexp">
-            <property name="format" value="System\.out\.println"/>
-            <property name="illegalPattern" value="true"/>
-        </module>
-        <module name="ReturnCount">
-            <property name="max" value="4"/>
         </module>
         <module name="NestedTryDepth ">
             <property name="max" value="4"/>

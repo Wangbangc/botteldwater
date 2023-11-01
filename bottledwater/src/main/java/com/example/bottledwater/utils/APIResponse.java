@@ -4,8 +4,6 @@ package com.example.bottledwater.utils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import java.util.List;
-
 /**
  * 响应工具类
  * 列表类型响应：successResponse

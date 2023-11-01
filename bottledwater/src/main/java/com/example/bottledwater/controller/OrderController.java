@@ -1,11 +1,11 @@
 package com.example.bottledwater.controller;
 
-import com.example.bottledwater.Component.ShoppingCartManager;
+import com.example.bottledwater.component.ShoppingCartManager;
 import com.example.bottledwater.dto.OrderDTO;
 import com.example.bottledwater.dto.OrderDetailDTO;
-import com.example.bottledwater.entity.order;
-import com.example.bottledwater.service.orderInterface;
-import com.example.bottledwater.service.userInterface;
+import com.example.bottledwater.entity.Order;
+import com.example.bottledwater.service.OrderInterface;
+import com.example.bottledwater.service.UserInterface;
 import com.example.bottledwater.utils.APIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,9 +45,9 @@ public class OrderController {
 
 
     @Autowired
-    private orderInterface orderService;
+    private OrderInterface orderService;
     @Autowired
-    private userInterface userInterface;
+    private UserInterface userInterface;
 
     /**
      * 获取所有订单
@@ -56,9 +56,9 @@ public class OrderController {
      */
     @GetMapping("/getAllOrders")
     @CrossOrigin
-    public APIResponse<List<order>> getAllOrders() {
+    public APIResponse<List<Order>> getAllOrders() {
         try {
-            List<order> orders = orderService.selectAll();
+            List<Order> orders = orderService.selectAll();
             return APIResponse.successResponse(orders);
         } catch (Exception e) {
             return APIResponse.errorResponse(1, e.getMessage());
@@ -135,11 +135,11 @@ public class OrderController {
      */
     @GetMapping("/getOrdersByUserId/{username}")
     @CrossOrigin
-    public APIResponse<List<order>> getOrdersByUserId(@PathVariable String username) {
+    public APIResponse<List<Order>> getOrdersByUserId(@PathVariable String username) {
         try {
             System.out.println(userInterface.selectUser(username).get(0));
             Integer userId = userInterface.selectUser(username).get(0).getId();
-            List<order> orders = orderService.selectByUserId(userId);
+            List<Order> orders = orderService.selectByUserId(userId);
             return APIResponse.successResponse(orders);
         } catch (Exception e) {
             return APIResponse.errorResponse(1, e.getMessage());
