@@ -21,7 +21,7 @@ public class userImpl implements userInterface {
 
     @Override
     public boolean insert(userwater record) {
-        if (userwaterMapper.insert(record)!=null){
+        if (userwaterMapper.insert(record) != null) {
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ public class userImpl implements userInterface {
 
     @Override
     public boolean selectusername(userwater userwater) {
-        if (userwaterMapper.selectUsername(userwater)!=null){
+        if (userwaterMapper.selectUsername(userwater) != null) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public class userImpl implements userInterface {
 
     @Override
     public boolean selectPhone(userwater userwater) {
-        if (userwaterMapper.selectPhone(userwater)!=null){
+        if (userwaterMapper.selectPhone(userwater) != null) {
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ public class userImpl implements userInterface {
 
     @Override
     public boolean selectEmail(userwater userwater) {
-        if (userwaterMapper.selectEmail(userwater)!=null){
+        if (userwaterMapper.selectEmail(userwater) != null) {
             return true;
         }
         return false;
@@ -58,17 +58,19 @@ public class userImpl implements userInterface {
 
     @Override
     public boolean updateuser(userwater userwater) {
-        if (userwaterMapper.updateuser(userwater)>0){
+        if (userwaterMapper.updateuser(userwater) > 0) {
 
             return true;
-        }return false;
+        }
+        return false;
     }
 
     @Override
     public boolean deluser(int id) {
-        if (userwaterMapper.deluser(id)>0){
+        if (userwaterMapper.deluser(id) > 0) {
             return true;
-        }return false;
+        }
+        return false;
     }
 
     @Override

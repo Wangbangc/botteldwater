@@ -35,8 +35,8 @@ public class bottledWaterImpl implements bottledWaterInterface {
 
     @Override
     public boolean updateByPrimaryKey(bottledWater record) {
-       if (bottledWaterMapper.updateByPrimaryKey(record)>0) return true;
-       else return false;
+        if (bottledWaterMapper.updateByPrimaryKey(record) > 0) return true;
+        else return false;
     }
 
     @Override

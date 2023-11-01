@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
+
 /**
  * 创建时间：2023/10/23
  * 编写人：wangbangc
@@ -22,54 +23,53 @@ import java.util.List;
  * 3.更新用户信息：Update
  * 4.删除用户信息：Del
  * 5.根据用户名模糊查询用户信息：selUser
- *
- * **/
+ **/
 @RestController
 @RequestMapping("/userManage")
 public class userManage {
     @Autowired
     private userInterface userInterface;
-@Autowired
-com.example.bottledwater.service.adminInterface adminInterface;
+    @Autowired
+    com.example.bottledwater.service.adminInterface adminInterface;
 
-@GetMapping ("/selectAll")
-@CrossOrigin
-public APIResponse<List<userwater>> select(@RequestHeader("Authorization" )String token){
-    try {
+    @GetMapping("/selectAll")
+    @CrossOrigin
+    public APIResponse<List<userwater>> select(@RequestHeader("Authorization") String token) {
+        try {
 
-        if (adminInterface.token(utils.getUsernameFromToken(token))){
-            return APIResponse.successResponse(userInterface.selectAll());
-        }else{
-            return APIResponse.errorResponse(2,"查询失败");
+            if (adminInterface.token(utils.getUsernameFromToken(token))) {
+                return APIResponse.successResponse(userInterface.selectAll());
+            } else {
+                return APIResponse.errorResponse(2, "查询失败");
+            }
+        } catch (Exception e) {
+            return APIResponse.errorResponse(1, e.getMessage());
         }
-    }catch (Exception e){
-        return APIResponse.errorResponse(1,e.getMessage());
     }
-}
 
     @PostMapping("/insert")
     @CrossOrigin
-    public APIResponse<String> Insert(@RequestHeader("Authorization") String token,@RequestBody userwater user){
+    public APIResponse<String> Insert(@RequestHeader("Authorization") String token, @RequestBody userwater user) {
 
         try {
-            if(adminInterface.token(utils.getUsernameFromToken(token))){
-                if (userInterface.selectusername(user)){
-                    return APIResponse.errorResponse(1,"用户已存在");
+            if (adminInterface.token(utils.getUsernameFromToken(token))) {
+                if (userInterface.selectusername(user)) {
+                    return APIResponse.errorResponse(1, "用户已存在");
                 }
-                if(userInterface.selectPhone(user)){
-                    return APIResponse.errorResponse(5,"电话已绑定");
+                if (userInterface.selectPhone(user)) {
+                    return APIResponse.errorResponse(5, "电话已绑定");
                 }
-                if (userInterface.selectEmail(user)) return APIResponse.errorResponse(6,"邮箱已绑定");
-                if (userInterface.insert(user)){
+                if (userInterface.selectEmail(user)) return APIResponse.errorResponse(6, "邮箱已绑定");
+                if (userInterface.insert(user)) {
                     return APIResponse.successResponse1();
-                }else {
-                    return APIResponse.errorResponse(3,"请联系管理员");
+                } else {
+                    return APIResponse.errorResponse(3, "请联系管理员");
                 }
-            }else {
-                return APIResponse.errorResponse(2,"管理员权限错误");
+            } else {
+                return APIResponse.errorResponse(2, "管理员权限错误");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return APIResponse.errorResponse(4, e.getMessage());
         }
@@ -77,70 +77,70 @@ public APIResponse<List<userwater>> select(@RequestHeader("Authorization" )Strin
 
     @PostMapping("/update")
     @CrossOrigin
-    public APIResponse<String> Update(@RequestBody userwater userwater){
+    public APIResponse<String> Update(@RequestBody userwater userwater) {
 
-    try {
-        if(userInterface.selectEmail(userwater))return APIResponse.errorResponse(3,"修改邮箱已存在");
-        if(userInterface.selectusername(userwater))return APIResponse.errorResponse(3,"修改用户名已存在");
-        if(userInterface.selectPhone(userwater))return APIResponse.errorResponse(3,"修改电话已被绑定");
-        if (userInterface.updateuser(userwater)){
-          return   APIResponse.successResponse1();
-        }else {
-            return APIResponse.errorResponse(2,"修改错误");
+        try {
+            if (userInterface.selectEmail(userwater)) return APIResponse.errorResponse(3, "修改邮箱已存在");
+            if (userInterface.selectusername(userwater)) return APIResponse.errorResponse(3, "修改用户名已存在");
+            if (userInterface.selectPhone(userwater)) return APIResponse.errorResponse(3, "修改电话已被绑定");
+            if (userInterface.updateuser(userwater)) {
+                return APIResponse.successResponse1();
+            } else {
+                return APIResponse.errorResponse(2, "修改错误");
+            }
+        } catch (Exception e) {
+
+            return APIResponse.errorResponse(1, e.getMessage());
+
         }
-    }catch (Exception e){
-
-        return APIResponse.errorResponse(1, e.getMessage());
-
-    }
     }
 
-    @DeleteMapping ("/delUser")
+    @DeleteMapping("/delUser")
     @CrossOrigin
-    public APIResponse<String> Del(int id){
-    try {
+    public APIResponse<String> Del(int id) {
+        try {
 
-        if (userInterface.deluser(id)){
-            return APIResponse.successResponse1();
-        }else {
-            return APIResponse.errorResponse(2,"删除错误");
+            if (userInterface.deluser(id)) {
+                return APIResponse.successResponse1();
+            } else {
+                return APIResponse.errorResponse(2, "删除错误");
+            }
+        } catch (Exception e) {
+            return APIResponse.errorResponse(1, e.getMessage());
+
         }
-    }catch (Exception e){
-        return APIResponse.errorResponse(1, e.getMessage());
-
-    }
     }
 
     @GetMapping("/selUser")
     @CrossOrigin
-    public APIResponse<List<userwater>> selUser(String sel){
-    System.out.println(sel);
-    try {
-        List<userwater> userwaters=userInterface.selectUser(sel);
-       if(!ObjectUtils.isEmpty(userwaters)){
-           return APIResponse.successResponse(userwaters);
-       }else {
-           return APIResponse.errorResponse(2,"查询不存在");
-       }
-    }catch (Exception e){
-        return APIResponse.errorResponse(1,e.getMessage());
-    }
+    public APIResponse<List<userwater>> selUser(String sel) {
+        System.out.println(sel);
+        try {
+            List<userwater> userwaters = userInterface.selectUser(sel);
+            if (!ObjectUtils.isEmpty(userwaters)) {
+                return APIResponse.successResponse(userwaters);
+            } else {
+                return APIResponse.errorResponse(2, "查询不存在");
+            }
+        } catch (Exception e) {
+            return APIResponse.errorResponse(1, e.getMessage());
+        }
     }
 
     //根据id查询
     @GetMapping("/selectIdUserwater")
     @CrossOrigin
-    public APIResponse<userwater> selectIdUserwater(Integer id){
+    public APIResponse<userwater> selectIdUserwater(Integer id) {
 
-    try {
-        userwater userwater=userInterface.selectIdUserwater(id);
-        if(!ObjectUtils.isEmpty(userwater)){
-            return APIResponse.successResponse(userwater);
-        }else {
-            return APIResponse.errorResponse(2,"查询不存在");
+        try {
+            userwater userwater = userInterface.selectIdUserwater(id);
+            if (!ObjectUtils.isEmpty(userwater)) {
+                return APIResponse.successResponse(userwater);
+            } else {
+                return APIResponse.errorResponse(2, "查询不存在");
+            }
+        } catch (Exception e) {
+            return APIResponse.errorResponse(1, e.getMessage());
         }
-    }catch (Exception e){
-        return APIResponse.errorResponse(1,e.getMessage());
-    }
     }
 }

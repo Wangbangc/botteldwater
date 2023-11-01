@@ -1,10 +1,12 @@
 package com.example.bottledwater.filter;
+
 import com.example.bottledwater.utils.utils;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -13,7 +15,7 @@ import java.util.Enumeration;
 public class AntPathMatcher implements Filter {
 
 
-    private static final org.springframework.util.AntPathMatcher PATH_MATCHER =new org.springframework.util.AntPathMatcher() ;
+    private static final org.springframework.util.AntPathMatcher PATH_MATCHER = new org.springframework.util.AntPathMatcher();
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -27,7 +29,7 @@ public class AntPathMatcher implements Filter {
             return;
         }
         String requestURI = request.getRequestURI();
-        String[] urls=new String[]{
+        String[] urls = new String[]{
                 "/admin/login",
                 "/admin/register",
         };
@@ -35,22 +37,23 @@ public class AntPathMatcher implements Filter {
         if (check) {
             filterChain.doFilter(request, response);
             return;
-        }else {
+        } else {
             String token = request.getHeader("Authorization");
-            if(utils.isTokenValid(token)){
-                filterChain.doFilter(request,response);
+            if (utils.isTokenValid(token)) {
+                filterChain.doFilter(request, response);
                 return;
-            }else {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Unauthorized");
+            } else {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
             }
             return;
         }
 
     }
-    public boolean check(String[] urls,String requestURI){
+
+    public boolean check(String[] urls, String requestURI) {
         for (String url : urls) {
-            boolean match=PATH_MATCHER.match(url,requestURI);
-            if(match)return true;
+            boolean match = PATH_MATCHER.match(url, requestURI);
+            if (match) return true;
         }
         return false;
     }

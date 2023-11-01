@@ -15,7 +15,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean insert(delivery record) {
-        if (deliveryMapper.insert(record)>0){
+        if (deliveryMapper.insert(record) > 0) {
             return true;
         }
         return false;
@@ -23,7 +23,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean deleteByPrimaryKey(Integer id) {
-        if (deliveryMapper.deleteByPrimaryKey(id)>0){
+        if (deliveryMapper.deleteByPrimaryKey(id) > 0) {
             return true;
         }
         return false;
@@ -31,7 +31,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean selectIdnumber(delivery delivery) {
-        if (deliveryMapper.selectIdnumber(delivery)==null){
+        if (deliveryMapper.selectIdnumber(delivery) == null) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean selectPhone(delivery delivery) {
-        if (deliveryMapper.selectPhone(delivery)==null){
+        if (deliveryMapper.selectPhone(delivery) == null) {
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean selectUsername(delivery delivery) {
-        if (deliveryMapper.selectUsername(delivery)==null){
+        if (deliveryMapper.selectUsername(delivery) == null) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public boolean updateByPrimaryKey(delivery record) {
-        if (deliveryMapper.updateByPrimaryKey(record)!=0){
+        if (deliveryMapper.updateByPrimaryKey(record) != 0) {
             return true;
         }
         return false;
@@ -73,6 +73,6 @@ public class deliveryImpl implements deliveryInterface {
 
     @Override
     public delivery selectByPrimaryKey(Integer id) {
-     return deliveryMapper.selectByPrimaryKey(id);
+        return deliveryMapper.selectByPrimaryKey(id);
     }
 }

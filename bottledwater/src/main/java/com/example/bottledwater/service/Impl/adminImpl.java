@@ -14,7 +14,7 @@ public class adminImpl implements adminInterface {
 
     @Override
     public boolean token(String username) {
-        if (adminMapper.token(username)!=null){
+        if (adminMapper.token(username) != null) {
             return true;
         }
         return false;
@@ -22,12 +22,12 @@ public class adminImpl implements adminInterface {
 
     @Override
     public admin login(admin rec) {
-     return adminMapper.login(rec);
+        return adminMapper.login(rec);
     }
 
     @Override
     public boolean loginname(admin rec) {
-        if (adminMapper.loginname(rec)!=null){
+        if (adminMapper.loginname(rec) != null) {
             return true;
         }
         return false;
@@ -36,15 +36,15 @@ public class adminImpl implements adminInterface {
     @Override
     public boolean register(admin rec) {
 
-        if (adminMapper.register(rec)==1){
+        if (adminMapper.register(rec) == 1) {
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean updateAdmin(admin rec,String usernanme) {
-        if (adminMapper.updateAdmin(rec,usernanme)==1){
+    public boolean updateAdmin(admin rec, String usernanme) {
+        if (adminMapper.updateAdmin(rec, usernanme) == 1) {
             return true;
         }
         return false;

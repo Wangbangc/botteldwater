@@ -38,7 +38,7 @@ public class orderImpl implements orderInterface {
         }
 
         // 获取新创建的订单ID
-        String newOrderId= orderNumber;
+        String newOrderId = orderNumber;
 
         // 创建并保存订单详情
         for (OrderDetailDTO detailDTO : orderDTO.getOrderDetails()) {
@@ -99,7 +99,6 @@ public class orderImpl implements orderInterface {
         }
         return true;
     }
-
 
 
     @Override

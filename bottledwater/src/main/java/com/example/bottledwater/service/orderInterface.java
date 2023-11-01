@@ -22,7 +22,6 @@ public interface orderInterface {
     boolean updateByPrimaryKey(OrderDTO orderDTO);
 
 
-
     // 根据用户ID查询订单
     List<order> selectByUserId(Integer userId);
 }

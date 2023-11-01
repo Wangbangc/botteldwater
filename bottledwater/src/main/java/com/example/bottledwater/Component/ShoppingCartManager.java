@@ -12,9 +12,10 @@ import java.util.Map;
 public class ShoppingCartManager {
     private static final String SHOPPING_CART_KEY_PREFIX = "shopping_cart:";
 
-  @Resource
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
-//    如果你非得使用其他类型的 比如 RedisTemplate<String,Object> 那么请使用 @Resource 注解
+
+    //    如果你非得使用其他类型的 比如 RedisTemplate<String,Object> 那么请使用 @Resource 注解
 //    @Autowired 按类型装配 byType
 //    @Resource 按bean名字装配 byName
     // 添加商品到购物车

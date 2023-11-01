@@ -6,6 +6,7 @@ import com.example.bottledwater.utils.APIResponse;
 import com.example.bottledwater.utils.ImageStorageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+
 import java.util.Base64;
 
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class bottledWaterController {
                                              @RequestParam("categoryName") String categoryName,
                                              @RequestParam("price") Integer price,
                                              @RequestParam("description") String description) {
-        bottledWater productInfo=new bottledWater();
+        bottledWater productInfo = new bottledWater();
         productInfo.setBrand(brand);
         productInfo.setCategoryName(categoryName);
         productInfo.setPrice(BigDecimal.valueOf(price));
@@ -97,7 +98,7 @@ public class bottledWaterController {
 
     //根据id查询
     @GetMapping("/getProductById/{id}")
-    public ResponseEntity<APIResponse<Map<String,Object>>> getProductById(@PathVariable Integer id) {
+    public ResponseEntity<APIResponse<Map<String, Object>>> getProductById(@PathVariable Integer id) {
         try {
             bottledWater product = bottledWaterService.selectByPrimaryKey(id);
             if (product == null) {
@@ -119,7 +120,7 @@ public class bottledWaterController {
     }
 
 
-   //更新商品信息
+    //更新商品信息
     @PutMapping("/updateProduct")
     public APIResponse<String> updateProduct(@RequestParam("imageData") MultipartFile file,
                                              @RequestParam("id") Integer id,
@@ -127,7 +128,7 @@ public class bottledWaterController {
                                              @RequestParam("categoryName") String categoryName,
                                              @RequestParam("price") Integer price,
                                              @RequestParam("description") String description) {
-        bottledWater productInfo=new bottledWater();
+        bottledWater productInfo = new bottledWater();
         productInfo.setId(id);
         productInfo.setBrand(brand);
         productInfo.setCategoryName(categoryName);
@@ -150,7 +151,8 @@ public class bottledWaterController {
             return APIResponse.errorResponse(1, e.getMessage());
         }
     }
-//模糊查询商品信息
+
+    //模糊查询商品信息
     @GetMapping("/selProduct")
     @CrossOrigin
     public ResponseEntity<APIResponse<List<Map<String, Object>>>> selProduct(String sel) {
