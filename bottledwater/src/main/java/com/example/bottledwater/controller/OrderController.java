@@ -1,8 +1,8 @@
 package com.example.bottledwater.controller;
 
 import com.example.bottledwater.Component.ShoppingCartManager;
-import com.example.bottledwater.DTO.OrderDTO;
-import com.example.bottledwater.DTO.OrderDetailDTO;
+import com.example.bottledwater.dto.OrderDTO;
+import com.example.bottledwater.dto.OrderDetailDTO;
 import com.example.bottledwater.entity.order;
 import com.example.bottledwater.service.orderInterface;
 import com.example.bottledwater.service.userInterface;

@@ -1,6 +1,6 @@
 package com.example.bottledwater.Component;
 
-import com.example.bottledwater.DTO.OrderDetailDTO;
+import com.example.bottledwater.dto.OrderDetailDTO;
 import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;

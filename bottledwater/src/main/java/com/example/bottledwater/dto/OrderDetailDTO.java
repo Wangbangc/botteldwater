@@ -1,4 +1,4 @@
-package com.example.bottledwater.DTO;
+package com.example.bottledwater.dto;
 
 import java.math.BigDecimal;
 

@@ -1,6 +1,6 @@
 package com.example.bottledwater.service;
 
-import com.example.bottledwater.DTO.OrderDTO;
+import com.example.bottledwater.dto.OrderDTO;
 import com.example.bottledwater.entity.order;
 
 import java.util.List;

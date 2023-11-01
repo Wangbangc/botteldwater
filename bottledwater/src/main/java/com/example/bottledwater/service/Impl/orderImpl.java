@@ -1,7 +1,7 @@
 package com.example.bottledwater.service.Impl;
 
-import com.example.bottledwater.DTO.OrderDTO;
-import com.example.bottledwater.DTO.OrderDetailDTO;
+import com.example.bottledwater.dto.OrderDTO;
+import com.example.bottledwater.dto.OrderDetailDTO;
 import com.example.bottledwater.entity.order;
 import com.example.bottledwater.entity.orderDetail;
 import com.example.bottledwater.mapper.orderDetailMapper;
