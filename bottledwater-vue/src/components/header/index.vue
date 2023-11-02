@@ -100,7 +100,8 @@ color: #ffffff;
   margin: 0;
 }
 .b{
-
+  width: 100%;
+  background-color: rgba(10, 10, 10, 0.89);
 }
 .a{
   width:100%;

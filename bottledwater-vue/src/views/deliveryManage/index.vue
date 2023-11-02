@@ -25,7 +25,7 @@
             <el-table-column prop="id" label="ID"></el-table-column>
             <el-table-column prop="username" label="用户名"></el-table-column>
             <el-table-column prop=" realName" label="真实姓名"></el-table-column>
-            <el-table-column prop="电话" label="电话"></el-table-column>
+            <el-table-column prop="phone" label="电话"></el-table-column>
             <el-table-column label="操作">
               <template #default="scope">
                 <el-row>

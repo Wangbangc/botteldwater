@@ -23,10 +23,10 @@
           </div>
           <el-table :data="users">
             <el-table-column prop="id" label="ID"></el-table-column>
-            <el-table-column prop="username" label="Username"></el-table-column>
-            <el-table-column prop="email" label="Email"></el-table-column>
-            <el-table-column prop="phone" label="Phone"></el-table-column>
-            <el-table-column prop="userType" label="userType"></el-table-column>
+            <el-table-column prop="username" label="用户名"></el-table-column>
+            <el-table-column prop="email" label="邮箱"></el-table-column>
+            <el-table-column prop="phone" label="电话"></el-table-column>
+            <el-table-column prop="userType" label="用户类型"></el-table-column>
             <el-table-column prop="companyInfo" label="companyInfo"></el-table-column>
             <el-table-column label="操作">
               <template #default="scope">
@@ -47,16 +47,16 @@
                 <el-form-item label="ID">
                   <el-input v-model="user.id" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="Username">
+                <el-form-item label="用户名">
                   <el-input v-model="user.username"></el-input>
                 </el-form-item>
-                <el-form-item label="Email">
+                <el-form-item label="邮箱">
                   <el-input v-model="user.email"></el-input>
                 </el-form-item>
-                <el-form-item label="Phone">
+                <el-form-item label="电话">
                   <el-input v-model="user.phone"></el-input>
                 </el-form-item>
-                <el-form-item label="User Type">                 
+                <el-form-item label="用户类型">                 
                     <el-select v-model="user.userType"  placeholder="Non-member">
         <el-option label="普通用户" value="Non-member" />
         <el-option label="企业用户" value="Member" />

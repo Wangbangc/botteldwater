@@ -6,14 +6,7 @@ import com.example.bottledwater.utils.APIResponse;
 import com.example.bottledwater.utils.ImageStorageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -34,6 +27,7 @@ import java.util.Map;
  * 3.根据id查询商品信息：getProductById
  * 4.更新商品信息：updateProduct
  * 5.模糊查询商品信息：selProduct
+ * 6.根据id删除商品：delProduct
  * **/
 @RestController
 @RequestMapping("/bottledWaterManage")
@@ -53,6 +47,9 @@ public class BottledWaterController {
         productInfo.setCategoryName(categoryName);
         productInfo.setPrice(BigDecimal.valueOf(price));
         productInfo.setDescription(description);
+        if (bottledWaterService.selectIdBottledWater(productInfo)) {
+            return APIResponse.errorResponse(2, "商品类别已存在");
+        }
         try {
             System.out.println(productInfo.getCategoryName());
             byte[] imageData = file.getBytes();
@@ -185,6 +182,20 @@ public class BottledWaterController {
             return ResponseEntity.ok(APIResponse.successResponse(responseList));
         } catch (Exception e) {
             return ResponseEntity.ok(APIResponse.errorResponse(1, e.getMessage()));
+        }
+    }
+    //6.根据id删除商品：delProduct
+    @DeleteMapping("/delProduct/{id}")
+    @CrossOrigin
+    public APIResponse<String> delProduct(@PathVariable Integer id) {
+        try {
+            if (bottledWaterService.deleteByPrimaryKey(id)) {
+                return APIResponse.successResponse1();
+            } else {
+                return APIResponse.errorResponse(2, "删除商品异常");
+            }
+        } catch (Exception e) {
+            return APIResponse.errorResponse(1, e.getMessage());
         }
     }
 

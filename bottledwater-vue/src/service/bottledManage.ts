@@ -31,7 +31,7 @@ formData.append('description', body.description);
 const bottleddelete = async (id) => {
     const a = await axios({
         method: 'delete',
-        url: '/bottledManage/delBottled?id=' + id,
+        url: '/bottledWaterManage/delProduct/' + id,
     });
     return a;
 };

@@ -42,4 +42,17 @@ public class BottledWaterImpl implements BottledWaterInterface {
     public List<BottledWater> selProduct(String sel) {
         return bottledWaterMapper.selProduct(sel);
     }
+
+    @Override
+    public boolean deleteByPrimaryKey(Integer id) {
+        return false;
+    }
+
+
+    @Override
+    public boolean selectIdBottledWater(BottledWater bottledWater) {
+        if (bottledWaterMapper.selectIdBottledWater(bottledWater)!=null)
+          return true;
+        else return false;
+    }
 }

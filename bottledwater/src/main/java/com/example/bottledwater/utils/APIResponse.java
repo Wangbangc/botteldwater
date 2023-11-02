@@ -46,4 +46,8 @@ public class APIResponse<T> {
     public static <T> APIResponse<T> errorResponse(int statusCode, String message) {
         return new APIResponse<>(false, statusCode, null, message);
     }
+    //更新errResponse
+    public static <T> APIResponse<T> errorResponse1(int statusCode, String message) {
+        return new APIResponse<>(false,statusCode , null, message);
+    }
 }

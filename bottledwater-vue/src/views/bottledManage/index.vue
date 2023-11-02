@@ -167,18 +167,19 @@ const uploadRef = ref<UploadInstance>()
         this.bottledup.imageData = file
       },
         //添加商品其中涉及图片上传
-      addBottled(){
-            console.log(this.bottled);
+      addBottled(){    
             bottledadd(this.bottled).then((res) => {
                 if (res.data.success) {
                 ElMessage.success(res.data.message);
                 this.bottledAdd = false;
-               
                 } else {
                 ElMessage.error(res.data.message);
                 }
             }).catch((error) => {
-                console.log(error);
+                console.log(error.response.data.message);
+                if(error.response.data.message=="Required part 'imageData' is not present."){
+                  ElMessage.error("图片格式不对或者未上传图片");
+                }
             });
       },
       edit(index: number, row: any) {
@@ -209,6 +210,28 @@ const uploadRef = ref<UploadInstance>()
           console.log(error);
         });
       },
+      del(index: number, row: any){
+        //根据id删除商品
+        ElMessageBox.confirm('是否删除该商品?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          bottleddelete(row.id).then((res) => {
+            if (res.data.success) {
+              ElMessage.success("删除成功");
+              this.bottleds.splice(index, 1);
+            } else {
+              ElMessage.error(res.data.message);
+            }
+          }).catch((error) => {
+            ElMessage.error("删除失败");
+            console.error(error);
+          });
+        }).catch(() => {
+          ElMessage.info('已取消删除');
+        });
+      }
       }
       }
     

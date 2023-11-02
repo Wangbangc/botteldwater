@@ -1,9 +1,12 @@
 package com.example.bottledwater.service.impl;
 
 import com.example.bottledwater.dto.OrderDTO;
+import com.example.bottledwater.dto.OrderDeliveryDTO;
 import com.example.bottledwater.dto.OrderDetailDTO;
+import com.example.bottledwater.entity.DeliveryAssignment;
 import com.example.bottledwater.entity.Order;
 import com.example.bottledwater.entity.OrderDetail;
+import com.example.bottledwater.mapper.DeliveryAssignmentMapper;
 import com.example.bottledwater.mapper.OrderDetailMapper;
 import com.example.bottledwater.mapper.OrderMapper;
 import com.example.bottledwater.service.OrderInterface;
@@ -13,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -22,6 +26,26 @@ public class OrderImpl implements OrderInterface {
     private OrderMapper orderMapper; // 自动注入订单的mapper
     @Autowired
     private OrderDetailMapper orderDetailMapper;
+    @Autowired
+    DeliveryAssignmentMapper deliveryAssignmentMapper;
+
+    @Override
+    public DeliveryAssignment selectByDeliveryPersonNameAndSerialNumber(String serialNumber) {
+        return deliveryAssignmentMapper.selectByDeliveryPersonNameAndSerialNumber(serialNumber);
+    }
+
+    @Override
+    public List<OrderDeliveryDTO> selectOrderDeliveryAll() {
+        return deliveryAssignmentMapper.selectAll();
+    }
+
+    @Override
+    public boolean orderStatus(Order order) {
+        if (orderMapper.orderStatus(order)>0){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean insert(OrderDTO orderDTO) {
@@ -38,7 +62,7 @@ public class OrderImpl implements OrderInterface {
         }
 
         // 获取新创建的订单ID
-        String newOrderId = orderNumber;
+        String newOrderId= orderNumber;
 
         // 创建并保存订单详情
         for (OrderDetailDTO detailDTO : orderDTO.getOrderDetails()) {
@@ -54,6 +78,11 @@ public class OrderImpl implements OrderInterface {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean insertDeliveryAssignment(String serialNumber,String deliveryPersonName) {
+        return deliveryAssignmentMapper.insertDeliveryAssignmentWithNames(serialNumber,deliveryPersonName)>0;
     }
 
 
@@ -101,9 +130,10 @@ public class OrderImpl implements OrderInterface {
     }
 
 
+
     @Override
     public List<Order> selectByUserId(Integer userId) {
         // 根据用户ID查询订单
-        return orderMapper.selectUserId(userId);
+        return orderMapper.selectuserid(userId);
     }
 }

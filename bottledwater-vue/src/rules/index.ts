@@ -29,6 +29,29 @@ export interface bottleds{
   [property: string]: any;
   imageData:File,
 }
+export interface deliveryOrderAdd {
+  deliveryPersonName: string;
+  serialNumber: string;
+  [property: string]: any;
+}
+export interface DeliveryPersonAndOrderRelationshipTable {
+  deliveryAssignmentId?: number;
+  deliveryPersonName?: string;
+  orderStatus?: string;
+  serialNumber?: string;
+  userName?: string;
+  [property: string]: any;
+}
+export interface order {
+  createdAt: string;
+  orderId: number;
+  orderStatus: string;
+  serialNumber: string;
+  totalPrice: number;
+  updatedAt: string;
+  userId: number;
+  [property: string]: any;
+}
 export interface deliverys{
     id: number;
     idNumber: null;

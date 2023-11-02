@@ -13,7 +13,6 @@
       </div></el-col>
     </el-row>
         <el-aside width="240px" class="aside">
-
           <el-menu
               background-color="#e6e9ee"
               default-active="2"
@@ -22,8 +21,8 @@
           >
             <el-sub-menu index="1">
               <template #title>
-
-                <span> <el-icon><TakeawayBox /></el-icon>商品管理</span>
+                <el-icon><Notebook /></el-icon>
+                <span> 商品管理</span>
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1"><el-button
@@ -36,8 +35,8 @@
             </el-sub-menu>
             <el-sub-menu index="2">
               <template #title>
-
-                <span>  <el-icon><UserFilled /></el-icon>信息管理</span>
+                <el-icon><UserFilled /></el-icon>
+                <span>  信息管理</span>
               </template>
               <el-menu-item-group>
                 <el-menu-item index="2-1"><el-button
@@ -51,22 +50,30 @@
             </el-sub-menu>
             <el-sub-menu index="3">
               <template #title>
-
-                <span> <el-icon><TakeawayBox /></el-icon>商品管理</span>
+                <el-icon><TakeawayBox /></el-icon>
+                <span> 订单管理</span>
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1"><el-button
                     key="plain"
                     type=""
                     link
-                  @click="bottledManage"
-                >商品信息</el-button></el-menu-item>
+                  @click="orderManage"
+                >订单信息</el-button></el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group>
+                <el-menu-item index="1-1"><el-button
+                    key="plain"
+                    type=""
+                    link
+                  @click="DeliveryOrderManage"
+                >订单配送员分配</el-button></el-menu-item>
               </el-menu-item-group>
             </el-sub-menu>
             <el-sub-menu index="4">
               <template #title>
-
-                <span> <el-icon><TakeawayBox /></el-icon>配送员管理</span>
+                <el-icon><Van /></el-icon>
+                <span> 配送员管理</span>
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1"><el-button
@@ -88,7 +95,9 @@ import {
  SwitchButton,
   Document,
   TakeawayBox,
-  UserFilled
+  UserFilled,
+  Van ,
+  Notebook 
 } from '@element-plus/icons-vue'
 </script>
 <script>
@@ -121,8 +130,11 @@ bottledManage(){
       // 跳转配送员信息管理
       this.$router.push('/deliveryManage')
     },
-    Orderlist(){
-      this.$router.push('/')
+    orderManage(){
+      this.$router.push('/orderManage')
+    },
+    DeliveryOrderManage(){
+      this.$router.push('/DeliveryOrderManage')
     }
   }
 }
@@ -130,6 +142,7 @@ bottledManage(){
 
 <style>
 .asi{
+  height: calc(100vh - 64px);
   background-color: #e6e9ee;
 }
 .bom{

@@ -142,4 +142,7 @@
     where order_id = #{orderId}
   </update>
     <update id="updateByPrimaryKey1"></update>
+    <update id="orderStatus">
+        update order_master set order_status=#{orderStatus} where order_id=#{orderId}
+    </update>
 </mapper>
